@@ -1,0 +1,10 @@
+td {
+    padding: 20px;
+    padding-right: 100px;
+    padding-left: 60px;
+    text-align: left;
+    background-color: white;
+    color: #506e69;
+    font-size: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
