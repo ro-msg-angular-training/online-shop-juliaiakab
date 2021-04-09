@@ -1,0 +1,9 @@
+<h1>Products</h1>
+<table>
+  <thead>
+    <th *ngFor="let header of headers">{{ header }}</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products" app-product-item [product]="product"></tr>
+  </tbody>
+</table>

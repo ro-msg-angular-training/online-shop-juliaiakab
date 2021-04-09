@@ -1,0 +1,22 @@
+<div>
+  <h1>Product Details</h1>
+  <button (click)="addToCart(product)">Add to Cart</button>
+</div>
+<table class="clearfix">
+  <tr>
+    <th>Name:</th>
+    <td>{{ product.name }}</td>
+  </tr>
+  <tr>
+    <th>Category:</th>
+    <td>{{ product.category }}</td>
+  </tr>
+  <tr>
+    <th>Price:</th>
+    <td>{{ product.price | currency }}</td>
+  </tr>
+  <tr>
+    <th>Description:</th>
+    <td>{{ product.description }}</td>
+  </tr>
+</table>
