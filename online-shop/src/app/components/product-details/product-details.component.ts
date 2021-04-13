@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { products } from '../../products';
-import { headers } from '../../headers';
+import { headers } from '../../mockup/headers';
+import { products } from '../../mockup/products';
 import { Product } from '../../interfaces/productInterface';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 

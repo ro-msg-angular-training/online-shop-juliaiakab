@@ -11,11 +11,6 @@ table {
   margin-left: 5%;
 }
 
-table,
-th {
-  border-collapse: collapse;
-}
-
 th {
   padding: 20px;
   padding-right: 100px;
@@ -25,4 +20,9 @@ th {
   color: white;
   font-size: 1.1em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+table,
+th {
+  border-collapse: collapse;
 }
