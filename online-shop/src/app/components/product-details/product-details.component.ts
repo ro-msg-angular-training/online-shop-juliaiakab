@@ -5,6 +5,7 @@ import { products } from '../../mockup/products';
 import { Product } from '../../interfaces/productInterface';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { HttpClient } from '@angular/common/http';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,26 +13,29 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  @Output() productAdded = new EventEmitter();
-
   headers = headers;
-  id!: number;
-  product!: Product;
-  deleted: boolean;
+  id: number = -1;
+  deleted: boolean = false;
+  errorMessage: string = '';
+  product: Product = { id: -1, category: '', name: '', price: -1, description: '' };
 
   constructor(
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
+    private errorHandlerService: ErrorHandlerService,
     private http: HttpClient
-  ) {
-    this.deleted = false;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-    this.http.get<Product>('http://localhost:3000/products/' + this.id).subscribe((product) => {
-      this.product = product;
-    });
+    this.http.get<Product>('http://localhost:3000/products/' + this.id).subscribe(
+      (product: Product) => {
+        this.product = product;
+      },
+      (error) => {
+        this.errorMessage = this.errorHandlerService.handleError(error);
+      }
+    );
   }
 
   addToCart(product: Product): void {
@@ -42,11 +46,10 @@ export class ProductDetailsComponent implements OnInit {
   delete(id: number): void {
     this.http.delete('http://localhost:3000/products/' + id).subscribe(
       () => {
-        console.log('DELETE successful');
         this.deleted = true;
       },
-      (response) => {
-        console.log('DELETE error', response);
+      (error) => {
+        this.errorMessage = this.errorHandlerService.handleError(error);
       }
     );
   }

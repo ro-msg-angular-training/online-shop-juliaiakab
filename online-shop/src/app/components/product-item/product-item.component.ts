@@ -9,7 +9,7 @@ import { Product } from 'src/app/interfaces/productInterface';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
-  @Input() product!: Product;
+  @Input() product: Product = { id: -1, category: '', price: 0, name: '', description: '' };
 
   constructor() {}
 

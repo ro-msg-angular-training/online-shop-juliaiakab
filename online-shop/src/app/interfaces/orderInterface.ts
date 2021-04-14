@@ -1,6 +1,9 @@
-import { CartItem } from './cartItemInterface';
+interface OrderItem {
+  productId: number;
+  quantity: number;
+}
 
 export interface Order {
   customer: string;
-  products: CartItem[];
+  products: OrderItem[];
 }

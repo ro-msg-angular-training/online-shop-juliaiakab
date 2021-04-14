@@ -6,21 +6,22 @@ import { Product } from '../interfaces/productInterface';
   providedIn: 'root',
 })
 export class ShoppingCartService {
-  items: any[] = [];
+  items: CartItem[] = [];
 
   addToCart(product: Product): void {
-    /*const itemAlreadyInCart = this.items.find((item) => item.id == product.id);
+    const itemAlreadyInCart = this.items.find((item) => item.id == product.id);
     if (itemAlreadyInCart) {
       itemAlreadyInCart.quantity++;
-      console.log('Already in cart: ', itemAlreadyInCart.name, itemAlreadyInCart.quantity);
     } else {
       this.items.push({ ...product, quantity: 1 });
-      console.log('Item just added to cart', this.items[-1].name, this.items[-1].quantity);
-    }*/
-    this.items.push(product);
+    }
   }
 
-  getItems(): Product[] {
+  getItems(): CartItem[] {
     return this.items;
+  }
+
+  dropCart(): void {
+    this.items = [];
   }
 }

@@ -41,9 +41,21 @@ th {
   clear: both;
 }
 
-.emptyString {
+.message {
   float: left;
   font-size: 1.2em;
   margin-left: 6%;
   clear: both;
+}
+
+.error {
+  color: red;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.success {
+  color: rgb(72, 116, 47);
+  font-size: 1.4em;
+  font-weight: bold;
 }

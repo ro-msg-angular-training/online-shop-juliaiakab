@@ -11,10 +11,9 @@ import { products } from 'src/app/mockup/products';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products!: Product[];
+  products: Product[] = [];
   headers = headers;
 
-  products2 = products;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {

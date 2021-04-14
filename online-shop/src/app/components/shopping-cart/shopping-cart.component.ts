@@ -1,7 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { throwError } from 'rxjs';
 import { CartItem } from 'src/app/interfaces/cartItemInterface';
+import { Order } from 'src/app/interfaces/orderInterface';
 import { Product } from 'src/app/interfaces/productInterface';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
@@ -10,48 +13,37 @@ import { ShoppingCartService } from '../../services/shopping-cart.service';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  constructor(private shoppingCartService: ShoppingCartService, private http: HttpClient) {}
-  items: Product[] = [];
+  items: CartItem[] = [];
+  successMessage: string = '';
+  errorMessage: string = '';
 
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private errorHandlerService: ErrorHandlerService,
+    private http: HttpClient
+  ) {}
   ngOnInit(): void {
     this.items = this.shoppingCartService.getItems();
   }
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      //'Content-Type': 'application/json',
-      responseType: 'text',
-    }),
-  };
-
   checkout(): void {
-    const order = {
+    const order: Order = {
       customer: 'doej',
-      products: this.items.map((product) => ({
-        productId: product.id,
-        quantity: 1,
+      products: this.items.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
       })),
     };
-    console.log('Order: ' + JSON.stringify(order));
-    this.http.post('http://localhost:3000/orders', order, this.httpOptions).subscribe({
-      next: (data) => {
-        console.log('In success: ' + data);
+
+    this.http.post('http://localhost:3000/orders', order, { responseType: 'text' }).subscribe({
+      next: () => {
+        this.successMessage = 'Your order has been placed successfully!';
+        this.shoppingCartService.dropCart();
+        this.items = [];
       },
       error: (error) => {
-        console.error('There was an error!', error, error.message);
+        this.errorMessage = this.errorHandlerService.handleError(error);
       },
     });
-
-    /*.subscribe(
-      () => {
-        console.log('POST successful');
-      },
-      (response) => {
-        console.log(response);
-      },
-      () => {
-        console.log('The POST observable is now completed.');
-      }
-    );*/
   }
 }

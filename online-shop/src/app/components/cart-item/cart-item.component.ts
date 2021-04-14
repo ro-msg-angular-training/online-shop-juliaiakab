@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/productInterface';
+import { CartItem } from 'src/app/interfaces/cartItemInterface';
 
 @Component({
   selector: '[app-cart-item]',
@@ -8,7 +8,7 @@ import { Product } from 'src/app/interfaces/productInterface';
 })
 export class CartItemComponent implements OnInit {
   @Input()
-  item!: any;
+  item: CartItem = { id: -1, category: '', name: '', quantity: -1, price: 0, description: '' };
 
   constructor() {}
 
