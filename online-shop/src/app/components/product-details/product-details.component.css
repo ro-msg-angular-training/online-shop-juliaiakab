@@ -41,3 +41,14 @@ td {
 .clearfix {
   clear: both;
 }
+
+.deleteButton {
+  margin-left: 20px;
+}
+
+.emptyString {
+  float: left;
+  font-size: 1.2em;
+  margin-left: 6%;
+  clear: both;
+}

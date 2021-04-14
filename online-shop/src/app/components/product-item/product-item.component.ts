@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/productInterface';
 
 @Component({

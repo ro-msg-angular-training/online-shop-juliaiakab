@@ -4,6 +4,7 @@ import { headers } from '../../mockup/headers';
 import { products } from '../../mockup/products';
 import { Product } from '../../interfaces/productInterface';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-details',
@@ -16,15 +17,37 @@ export class ProductDetailsComponent implements OnInit {
   headers = headers;
   id!: number;
   product!: Product;
+  deleted: boolean;
+
+  constructor(
+    private route: ActivatedRoute,
+    private shoppingCartService: ShoppingCartService,
+    private http: HttpClient
+  ) {
+    this.deleted = false;
+  }
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params.id;
+    this.http.get<Product>('http://localhost:3000/products/' + this.id).subscribe((product) => {
+      this.product = product;
+    });
+  }
 
   addToCart(product: Product): void {
     this.shoppingCartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
   }
 
-  constructor(private route: ActivatedRoute, private shoppingCartService: ShoppingCartService) {}
-  ngOnInit(): void {
-    this.id = this.route.snapshot.params.id;
-    this.product = products.filter((product) => product.id == this.id)[0];
+  delete(id: number): void {
+    this.http.delete('http://localhost:3000/products/' + id).subscribe(
+      () => {
+        console.log('DELETE successful');
+        this.deleted = true;
+      },
+      (response) => {
+        console.log('DELETE error', response);
+      }
+    );
   }
 }

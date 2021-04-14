@@ -2,3 +2,4 @@
 <td>{{ product.name }}</td>
 <td>{{ product.price | currency }}</td>
 <td><button [routerLink]="['/products', product.id]" routerLinkActive=" active">...</button></td>
+<!--<td><button (click)="loadProduct(product.id)">...</button></td>-->

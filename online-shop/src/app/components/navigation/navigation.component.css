@@ -1,23 +1,8 @@
-.outer {
-  border-bottom: black;
-  border-width: thick;
-  background-color: #718870;
-  color: white;
-  height: 120px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
 h1 {
   float: left;
   margin-left: 5%;
   padding-top: 1%;
   font-size: 3em;
-}
-
-.inner {
-  padding: 4%;
-  padding-top: 5%;
-  margin-left: 50%;
 }
 
 a {
@@ -26,6 +11,21 @@ a {
   float: left;
   font-size: 1.2em;
   text-decoration: none;
+}
+
+.inner {
+  padding: 4%;
+  padding-top: 5%;
+  margin-left: 50%;
+}
+
+.outer {
+  border-bottom: black;
+  border-width: thick;
+  background-color: #718870;
+  color: white;
+  height: 120px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a:visited {

@@ -8,7 +8,7 @@ import { Product } from 'src/app/interfaces/productInterface';
 })
 export class CartItemComponent implements OnInit {
   @Input()
-  item!: Product;
+  item!: any;
 
   constructor() {}
 

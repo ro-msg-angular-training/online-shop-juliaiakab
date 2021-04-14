@@ -1,22 +1,27 @@
 <div>
   <h1>Product Details</h1>
   <button (click)="addToCart(product)">Add to Cart</button>
+  <button (click)="delete(product.id)" class="deleteButton">Delete</button>
 </div>
-<table class="clearfix">
+<table *ngIf="!deleted; else itemDeleted" class="clearfix">
   <tr>
     <th>Name:</th>
-    <td>{{ product.name }}</td>
+    <td>{{ product?.name }}</td>
   </tr>
   <tr>
     <th>Category:</th>
-    <td>{{ product.category }}</td>
+    <td>{{ product?.category }}</td>
   </tr>
   <tr>
     <th>Price:</th>
-    <td>{{ product.price | currency }}</td>
+    <td>{{ product?.price | currency }}</td>
   </tr>
   <tr>
     <th>Description:</th>
-    <td>{{ product.description }}</td>
+    <td>{{ product?.description }}</td>
   </tr>
 </table>
+
+<ng-template #itemDeleted>
+  <p class="emptyString">This item got deleted</p>
+</ng-template>
