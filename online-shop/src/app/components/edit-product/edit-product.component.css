@@ -15,6 +15,7 @@ button {
   float: left;
   padding: 1%;
   margin-top: 2%;
+  margin-left: 20px;
 }
 
 table {
@@ -24,8 +25,6 @@ table {
   font-size: large;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: auto;
-  width: 60%;
-  float: left;
 }
 
 th {
@@ -34,18 +33,26 @@ th {
   padding: 1em;
 }
 
-td {
+input {
+  margin-top: 20px;
   text-align: left;
-  padding-left: 5%;
+  padding-left: 2%;
   width: 100%;
+  height: 40px;
+  margin-left: 5%;
+}
+
+textarea {
+  margin-top: 20px;
+  text-align: left;
+  padding-left: 2%;
+  width: 100%;
+  padding-top: 10px;
+  margin-left: 5%;
 }
 
 .clearfix {
   clear: both;
-}
-
-.editAndDeleteButton {
-  margin-left: 20px;
 }
 
 .emptyString {
@@ -55,9 +62,9 @@ td {
   clear: both;
 }
 
-.productImage {
-  float: left;
-  float: right;
-  margin-right: 8%;
-  width: 320px;
+.errorMessage {
+  color: brown;
+  font-size: 0.7em;
+  text-align: left;
+  margin-left: 5%;
 }

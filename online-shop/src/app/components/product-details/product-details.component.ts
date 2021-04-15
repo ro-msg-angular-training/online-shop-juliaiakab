@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { headers } from '../../mockup/headers';
-import { products } from '../../mockup/products';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../interfaces/productInterface';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { HttpClient } from '@angular/common/http';
@@ -17,12 +16,13 @@ export class ProductDetailsComponent implements OnInit {
   id: number = -1;
   deleted: boolean = false;
   errorMessage: string = '';
-  product: Product = { id: -1, category: '', name: '', price: -1, description: '' };
+  product: Product = { id: -1, category: '', name: '', price: -1, description: '', image: '' };
 
   constructor(
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
     private errorHandlerService: ErrorHandlerService,
+    private router: Router,
     private http: HttpClient
   ) {}
 
@@ -43,8 +43,12 @@ export class ProductDetailsComponent implements OnInit {
     window.alert('Your product has been added to the cart!');
   }
 
-  delete(id: number): void {
-    this.http.delete('http://localhost:3000/products/' + id).subscribe(
+  edit(): void {
+    this.router.navigate(['products/' + this.product.id + '/edit']);
+  }
+
+  delete(): void {
+    this.http.delete('http://localhost:3000/products/' + this.product.id).subscribe(
       () => {
         this.deleted = true;
       },

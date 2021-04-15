@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { headers } from '../../mockup/headers';
 import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/interfaces/productInterface';
-import { Observable } from 'rxjs';
-import { products } from 'src/app/mockup/products';
 
 @Component({
   selector: 'app-product-list',

@@ -1,7 +1,8 @@
 <div>
   <h1>Product Details</h1>
   <button (click)="addToCart(product)">Add to Cart</button>
-  <button (click)="delete(product.id)" class="deleteButton">Delete</button>
+  <button (click)="edit()" class="editAndDeleteButton">Edit</button>
+  <button (click)="delete()" class="editAndDeleteButton">Delete</button>
 </div>
 <table *ngIf="!deleted; else itemDeleted" class="clearfix">
   <tr>
@@ -21,7 +22,7 @@
     <td>{{ product?.description }}</td>
   </tr>
 </table>
-
+<img src="{{ product?.image }}" class="productImage" />
 <ng-template #itemDeleted>
   <p class="emptyString">This item got deleted</p>
 </ng-template>

@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/productInterface';
 
 @Component({
@@ -9,7 +7,7 @@ import { Product } from 'src/app/interfaces/productInterface';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
-  @Input() product: Product = { id: -1, category: '', price: 0, name: '', description: '' };
+  @Input() product: Product = { id: -1, category: '', price: 0, name: '', description: '', image: '' };
 
   constructor() {}
 

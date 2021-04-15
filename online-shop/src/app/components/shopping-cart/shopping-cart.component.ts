@@ -1,9 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { throwError } from 'rxjs';
 import { CartItem } from 'src/app/interfaces/cartItemInterface';
 import { Order } from 'src/app/interfaces/orderInterface';
-import { Product } from 'src/app/interfaces/productInterface';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 

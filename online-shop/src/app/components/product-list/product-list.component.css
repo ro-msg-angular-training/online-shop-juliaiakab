@@ -1,14 +1,27 @@
 h1 {
-  margin-left: 5%;
-  margin-right: 100%;
+  margin-left: -35%;
+  margin-right: 10%;
   padding-bottom: 2%;
   float: left;
+  width: 50%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #505e4f;
 }
 
+button {
+  font-size: large;
+  border-radius: 5%;
+  width: 10%;
+  color: rgb(52, 59, 48);
+  float: right;
+  margin-right: 18%;
+  padding: 1%;
+  margin-top: 2%;
+}
+
 table {
   margin-left: 5%;
+  margin-bottom: 5%;
 }
 
 th {
@@ -25,4 +38,8 @@ th {
 table,
 th {
   border-collapse: collapse;
+}
+
+.addProduct {
+  clear: both;
 }
