@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/productInterface';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
@@ -12,7 +12,6 @@ import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 })
 export class AddProductComponent implements OnInit {
   constructor(
-    private route: ActivatedRoute,
     private http: HttpClient,
     private errorHandlerService: ErrorHandlerService,
     private formBuilder: FormBuilder,
@@ -21,7 +20,6 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  product: Product = { id: -1, name: '', category: '', price: -1, description: '', image: '' };
   errorMessage: string = '';
   formData: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -52,12 +50,14 @@ export class AddProductComponent implements OnInit {
   }
 
   submit() {
-    this.product.name = this.formData.value.name;
-    this.product.category = this.formData.value.category;
-    this.product.price = this.formData.value.price;
-    this.product.description = this.formData.value.description;
+    var product = <Product>{};
+    product.name = this.formData.value.name;
+    product.category = this.formData.value.category;
+    product.price = this.formData.value.price;
+    product.description = this.formData.value.description;
+    product.image = '';
 
-    this.http.post('http://localhost:3000/products', this.product, { responseType: 'text' }).subscribe({
+    this.http.post('http://localhost:3000/products', product, { responseType: 'text' }).subscribe({
       next: () => {
         console.log('Product added successfully!');
         window.alert('The product has been added successfully');

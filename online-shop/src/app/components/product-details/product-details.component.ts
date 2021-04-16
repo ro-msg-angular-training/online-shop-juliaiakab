@@ -16,7 +16,7 @@ export class ProductDetailsComponent implements OnInit {
   id: number = -1;
   deleted: boolean = false;
   errorMessage: string = '';
-  product: Product = { id: -1, category: '', name: '', price: -1, description: '', image: '' };
+  product = <Product>{};
 
   constructor(
     private route: ActivatedRoute,
