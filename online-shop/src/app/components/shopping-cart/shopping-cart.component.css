@@ -1,0 +1,61 @@
+h1 {
+  float: left;
+  width: 50%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(52, 59, 48);
+  margin-left: -37%;
+  margin-top: 3%;
+  margin-right: 35%;
+}
+
+button {
+  font-size: large;
+  border-radius: 5%;
+  color: rgb(52, 59, 48);
+  float: left;
+  padding: 1%;
+  margin-top: 2%;
+}
+
+table {
+  margin-left: 5%;
+}
+
+th {
+  padding: 20px;
+  padding-right: 100px;
+  padding-left: 60px;
+  text-align: left;
+  background-color: #8ba48a;
+  color: white;
+  font-size: 1.1em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+table,
+th {
+  border-collapse: collapse;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.message {
+  float: left;
+  font-size: 1.2em;
+  margin-left: 6%;
+  clear: both;
+}
+
+.error {
+  color: red;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.success {
+  color: rgb(72, 116, 47);
+  font-size: 1.4em;
+  font-weight: bold;
+}

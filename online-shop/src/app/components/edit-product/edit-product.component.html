@@ -1,0 +1,29 @@
+<form [formGroup]="formData" (ngSubmit)="submit()">
+  <div>
+    <h1>Edit Product</h1>
+    <button type="submit" [disabled]="!formData.valid">Save</button>
+    <button (click)="cancel()">Cancel</button>
+  </div>
+
+  <table class="clearfix">
+    <tr>
+      <th>Name:</th>
+      <input type="text" name="name" formControlName="name" required minlength="3" />
+      <div *ngIf="name?.errors?.minlength" class="errorMessage">Name must be at least 3 characters long.</div>
+    </tr>
+    <tr>
+      <th>Category:</th>
+      <input type="text" name="category" formControlName="category" required minlength="3" />
+      <div *ngIf="category?.errors?.minlength" class="errorMessage">Category must be at least 3 characters long.</div>
+    </tr>
+    <tr>
+      <th>Price:</th>
+      <input type="number" name="price" formControlName="price" required />
+      <div *ngIf="price?.errors?.pattern" class="errorMessage">Price must be a valid decimal number</div>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <textarea cols="60" rows="4" name="description" formControlName="description"></textarea>
+    </tr>
+  </table>
+</form>

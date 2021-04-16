@@ -1,0 +1,19 @@
+<div>
+  <h1>Shopping Cart</h1>
+  <button (click)="checkout()">Checkout</button>
+</div>
+<div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
+<table *ngIf="items.length; else empty" class="clearfix">
+  <thead>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items" app-cart-item [item]="item"></tr>
+  </tbody>
+</table>
+<div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
+<ng-template #empty>
+  <p class="message">Your cart is empty right now.</p>
+</ng-template>
