@@ -1,8 +1,8 @@
 <div>
   <h1>Product Details</h1>
   <button (click)="addToCart(product)">Add to Cart</button>
-  <button (click)="edit()" class="editAndDeleteButton">Edit</button>
-  <button (click)="delete()" class="editAndDeleteButton">Delete</button>
+  <button [disabled]="!admin" (click)="edit()" class="editAndDeleteButton">Edit</button>
+  <button [disabled]="!admin" (click)="delete()" class="editAndDeleteButton">Delete</button>
 </div>
 <table *ngIf="!deleted; else itemDeleted" class="clearfix">
   <tr>

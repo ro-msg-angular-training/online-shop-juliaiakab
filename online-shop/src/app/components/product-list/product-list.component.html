@@ -1,6 +1,6 @@
 <div>
   <h1>Products</h1>
-  <button routerLink="/products/new" routerLinkActive="active">Add</button>
+  <button routerLink="/products/new" routerLinkActive="active" [disabled]="!admin">Add</button>
 </div>
 <table>
   <thead>

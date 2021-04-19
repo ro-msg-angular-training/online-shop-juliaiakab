@@ -1,0 +1,49 @@
+h1 {
+  text-align: left;
+  margin-left: 10%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(52, 59, 48);
+  margin-top: 3%;
+}
+
+div {
+  text-align: left;
+  margin-left: 5%;
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+label {
+  font-weight: bold;
+  text-align: left;
+  padding: 1em;
+}
+
+input {
+  margin-top: 20px;
+  text-align: left;
+  padding-left: 2%;
+  width: 30%;
+  height: 40px;
+  margin-left: 5%;
+}
+
+.password {
+  margin-left: 5.3%;
+}
+
+.errorMessage {
+  color: brown;
+  font-size: 0.7em;
+  text-align: left;
+  margin-left: 5%;
+}
+
+button {
+  font-size: large;
+  border-radius: 5%;
+  color: rgb(52, 59, 48);
+  padding: 1%;
+  margin-top: 3%;
+  width: 10%;
+}

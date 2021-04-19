@@ -13,6 +13,9 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginGuard } from './guards/login.guard';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -25,9 +28,10 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     CartItemComponent,
     EditProductComponent,
     AddProductComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule, ReactiveFormsModule],
-  providers: [],
+  providers: [LoginGuard, LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
