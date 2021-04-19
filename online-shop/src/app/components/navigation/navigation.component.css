@@ -6,16 +6,14 @@ h1 {
 }
 
 a {
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 0 3%;
   float: left;
   font-size: 1.2em;
   text-decoration: none;
 }
 
 .inner {
-  padding: 4%;
-  padding-top: 5%;
+  padding: 5% 4% 4% 4%;
   margin-left: 50%;
 }
 

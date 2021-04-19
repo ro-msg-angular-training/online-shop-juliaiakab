@@ -1,7 +1,5 @@
 td {
-  padding: 20px;
-  padding-right: 100px;
-  padding-left: 60px;
+  padding: 20px 100px 20px 60px;
   text-align: left;
   background-color: white;
   color: #506e69;
@@ -12,8 +10,7 @@ td {
 button {
   background-color: #a3c0a2;
   margin-left: 25%;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px;
   border-radius: 5%;
   border: #bde4c3;
   height: 2em;

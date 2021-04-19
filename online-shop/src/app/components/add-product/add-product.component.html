@@ -8,17 +8,17 @@
   <table class="clearfix">
     <tr>
       <th>Name:</th>
-      <input type="text" name="name" formControlName="name" required minlength="3" />
+      <input type="text" name="name" formControlName="name" />
       <div *ngIf="name?.errors?.minlength" class="errorMessage">Name must be at least 3 characters long.</div>
     </tr>
     <tr>
       <th>Category:</th>
-      <input type="text" name="category" formControlName="category" required minlength="3" />
+      <input type="text" name="category" formControlName="category" />
       <div *ngIf="category?.errors?.minlength" class="errorMessage">Category must be at least 3 characters long.</div>
     </tr>
     <tr>
       <th>Price:</th>
-      <input type="number" name="price" formControlName="price" required />
+      <input type="number" name="price" formControlName="price" />
       <div *ngIf="price?.errors?.pattern" class="errorMessage">Price must be a valid decimal number</div>
     </tr>
     <tr>

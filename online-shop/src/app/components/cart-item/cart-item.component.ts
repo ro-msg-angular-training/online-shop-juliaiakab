@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CartItem } from 'src/app/interfaces/cartItemInterface';
 
 @Component({
@@ -6,10 +6,8 @@ import { CartItem } from 'src/app/interfaces/cartItemInterface';
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.css'],
 })
-export class CartItemComponent implements OnInit {
-  @Input() item = <CartItem>{};
+export class CartItemComponent {
+  @Input() item = {} as CartItem;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

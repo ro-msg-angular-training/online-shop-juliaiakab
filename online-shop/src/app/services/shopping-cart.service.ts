@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AppConfig } from '../app.config';
 import { CartItem } from '../interfaces/cartItemInterface';
+import { Order } from '../interfaces/orderInterface';
 import { Product } from '../interfaces/productInterface';
 
 @Injectable({
@@ -7,6 +11,10 @@ import { Product } from '../interfaces/productInterface';
 })
 export class ShoppingCartService {
   items: CartItem[] = [];
+  private orderUrl = AppConfig.API_ENDPOINT + '/cart';
+  private cartUrl = AppConfig.API_ENDPOINT + '/orders';
+
+  constructor(private http: HttpClient) {}
 
   addToCart(product: Product): void {
     const itemAlreadyInCart = this.items.find((item) => item.id == product.id);
@@ -23,5 +31,9 @@ export class ShoppingCartService {
 
   dropCart(): void {
     this.items = [];
+  }
+
+  createOrder(order: Order): Observable<string> {
+    return this.http.post(this.orderUrl, order, { responseType: 'text' });
   }
 }

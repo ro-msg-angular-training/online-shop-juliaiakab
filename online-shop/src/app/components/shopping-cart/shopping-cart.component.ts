@@ -15,11 +15,8 @@ export class ShoppingCartComponent implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(
-    private shoppingCartService: ShoppingCartService,
-    private errorHandlerService: ErrorHandlerService,
-    private http: HttpClient
-  ) {}
+  constructor(private shoppingCartService: ShoppingCartService, private errorHandlerService: ErrorHandlerService) {}
+
   ngOnInit(): void {
     this.items = this.shoppingCartService.getItems();
   }
@@ -33,7 +30,7 @@ export class ShoppingCartComponent implements OnInit {
       })),
     };
 
-    this.http.post('http://localhost:3000/orders', order, { responseType: 'text' }).subscribe({
+    this.shoppingCartService.createOrder(order).subscribe({
       next: () => {
         this.successMessage = 'Your order has been placed successfully!';
         this.shoppingCartService.dropCart();

@@ -5,6 +5,7 @@ import { Product } from '../../interfaces/productInterface';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,22 +14,23 @@ import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 })
 export class ProductDetailsComponent implements OnInit {
   headers = headers;
-  id: number = -1;
+  id = -1;
   deleted: boolean = false;
   errorMessage: string = '';
-  product = <Product>{};
+  product = {} as Product;
 
   constructor(
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
     private errorHandlerService: ErrorHandlerService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-    this.http.get<Product>('http://localhost:3000/products/' + this.id).subscribe(
+    this.productService.getProduct(this.id).subscribe(
       (product: Product) => {
         this.product = product;
       },
@@ -48,7 +50,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   delete(): void {
-    this.http.delete('http://localhost:3000/products/' + this.product.id).subscribe(
+    this.productService.deleteProduct(this.id).subscribe(
       () => {
         this.deleted = true;
       },
