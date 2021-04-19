@@ -52,13 +52,13 @@ export class AddProductComponent {
 
   submit(): void {
     var product = {} as Product;
-    product.name = this.formData.value.name;
+
     product.category = this.formData.value.category;
     product.price = this.formData.value.price;
     product.description = this.formData.value.description;
     product.image = '';
 
-    this.http.post('http://localhost:3000/products', product, { responseType: 'text' }).subscribe({
+    this.productService.createProduct(product).subscribe({
       next: () => {
         console.log('Product added successfully!');
         window.alert('The product has been added successfully');

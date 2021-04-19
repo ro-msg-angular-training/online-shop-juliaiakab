@@ -11,8 +11,7 @@ import { Product } from '../interfaces/productInterface';
 })
 export class ShoppingCartService {
   items: CartItem[] = [];
-  private orderUrl = AppConfig.API_ENDPOINT + '/cart';
-  private cartUrl = AppConfig.API_ENDPOINT + '/orders';
+  private orderUrl = AppConfig.API_ENDPOINT + '/orders';
 
   constructor(private http: HttpClient) {}
 

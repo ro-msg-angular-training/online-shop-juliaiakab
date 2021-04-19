@@ -10,20 +10,13 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private loginService: LoginService,
-    private formBuilder: FormBuilder,
-    public router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
-  ngOnInit(): void {}
-
-  redirectUrl: string = '';
-
   loginFormData: FormGroup = this.formBuilder.group({
     username: [''],
     password: [''],
   });
+
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, public router: Router) {}
+  ngOnInit(): void {}
 
   get username() {
     return this.loginFormData.get('username');
@@ -34,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    var user = <User>{};
+    var user = {} as User;
     user.username = this.loginFormData.value.username;
     user.password = this.loginFormData.value.password;
     this.loginService.login(user).subscribe(

@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/productInterface';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
@@ -25,7 +24,6 @@ export class EditProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
     private errorHandlerService: ErrorHandlerService,
     private formBuilder: FormBuilder,
     private router: Router,
