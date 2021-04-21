@@ -52,7 +52,7 @@ export class AddProductComponent {
 
   submit(): void {
     var product = {} as Product;
-
+    product.name = this.formData.value.name;
     product.category = this.formData.value.category;
     product.price = this.formData.value.price;
     product.description = this.formData.value.description;

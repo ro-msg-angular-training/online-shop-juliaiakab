@@ -1,11 +1,7 @@
 h1 {
   float: left;
   width: 50%;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgb(52, 59, 48);
-  margin-left: -37%;
-  margin-top: 3%;
-  margin-right: 35%;
 }
 
 button {
@@ -19,24 +15,20 @@ button {
 
 table {
   margin-left: 5%;
-}
-
-th {
-  padding: 20px 100px 20px 60px;
-  text-align: left;
-  background-color: #8ba48a;
-  color: white;
-  font-size: 1.1em;
+  display: block;
+  font-size: large;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: auto;
+  width: 100%;
 }
 
-table,
-th {
-  border-collapse: collapse;
+.mat-display-2 {
+  margin: 3% 25% 0 -5%;
 }
 
 .clearfix {
   clear: both;
+  margin: 0 10%;
 }
 
 .message {

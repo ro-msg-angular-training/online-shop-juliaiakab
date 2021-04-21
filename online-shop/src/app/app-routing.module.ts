@@ -7,12 +7,18 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { LoginGuard } from './guards/login.guard';
+import { MatTableModule } from '@angular/material/table';
 
 const routes: Routes = [
   { path: 'products', component: ProductListComponent, canActivate: [LoginGuard] },
   { path: 'products/new', component: AddProductComponent, canActivate: [LoginGuard], data: { role: 'admin' } },
   { path: 'products/:id', component: ProductDetailsComponent, canActivate: [LoginGuard] },
-  { path: 'products/:id/edit', component: EditProductComponent, canActivate: [LoginGuard], data: { role: 'admin' } },
+  {
+    path: 'products/:id/edit',
+    component: EditProductComponent,
+    canActivate: [LoginGuard],
+    data: { role: 'admin' },
+  },
   { path: 'cart', component: ShoppingCartComponent, canActivate: [LoginGuard], data: { role: 'customer' } },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

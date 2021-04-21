@@ -3,7 +3,6 @@ import { headers } from '../../mockup/headers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../interfaces/productInterface';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
-import { HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ProductService } from 'src/app/services/product.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -26,7 +25,6 @@ export class ProductDetailsComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private errorHandlerService: ErrorHandlerService,
     private router: Router,
-    private http: HttpClient,
     private productService: ProductService,
     private loginService: LoginService
   ) {}

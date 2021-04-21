@@ -14,13 +14,19 @@ export class ShoppingCartComponent implements OnInit {
   items: CartItem[] = [];
   successMessage: string = '';
   errorMessage: string = '';
+  header: string[] = ['name', 'price', 'quantity'];
+
+  itemz: CartItem[] = [
+    { id: 34, category: 'a Cat', description: '222', name: ' ee', price: 34, quantity: 2 },
+    { id: 34, category: 'a Cat', description: '222', name: ' aa', price: 34, quantity: 2 },
+  ];
 
   constructor(private shoppingCartService: ShoppingCartService, private errorHandlerService: ErrorHandlerService) {}
 
   ngOnInit(): void {
     this.items = this.shoppingCartService.getItems();
   }
-
+  columnNames = ['name', 'price', 'quantity'];
   checkout(): void {
     const order: Order = {
       customer: 'doej',

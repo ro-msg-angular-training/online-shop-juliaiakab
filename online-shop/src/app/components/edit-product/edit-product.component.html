@@ -1,29 +1,41 @@
 <form [formGroup]="formData" (ngSubmit)="submit()">
   <div>
-    <h1>Edit Product</h1>
-    <button type="submit" [disabled]="!formData.valid">Save</button>
-    <button (click)="cancel()">Cancel</button>
+    <h1 class="mat-display-2">Edit Product</h1>
+    <button mat-raised-button type="submit" [disabled]="!formData.valid"><mat-icon>save</mat-icon>Save</button>
+    <button mat-raised-button (click)="cancel()"><mat-icon>cancel</mat-icon>Cancel</button>
   </div>
 
   <table class="clearfix">
     <tr>
       <th>Name:</th>
-      <input type="text" name="name" formControlName="name" />
-      <div *ngIf="name?.errors?.minlength" class="errorMessage">Name must be at least 3 characters long.</div>
+      <mat-form-field appearance="fill">
+        <input matInput type="text" name="name" formControlName="name" />
+        <mat-error *ngIf="name?.errors?.minlength" class="errorMessage"
+          >Name must be at least 3 characters long</mat-error
+        >
+      </mat-form-field>
     </tr>
     <tr>
       <th>Category:</th>
-      <input type="text" name="category" formControlName="category" />
-      <div *ngIf="category?.errors?.minlength" class="errorMessage">Category must be at least 3 characters long.</div>
+      <mat-form-field appearance="fill">
+        <input matInput type="text" name="category" formControlName="category" />
+        <mat-error *ngIf="category?.errors?.minlength" class="errorMessage"
+          >Category must be at least 3 characters long.</mat-error
+        >
+      </mat-form-field>
     </tr>
     <tr>
       <th>Price:</th>
-      <input type="number" name="price" formControlName="price" />
-      <div *ngIf="price?.errors?.pattern" class="errorMessage">Price must be a valid decimal number</div>
+      <mat-form-field appearance="fill">
+        <input matInput type="number" name="price" formControlName="price" />
+        <mat-error *ngIf="price?.errors?.pattern" class="errorMessage">Price must be a valid decimal number</mat-error>
+      </mat-form-field>
     </tr>
     <tr>
       <th>Description:</th>
-      <textarea cols="60" rows="4" name="description" formControlName="description"></textarea>
+      <mat-form-field appearance="fill">
+        <textarea matInput cols="60" rows="4" name="description" formControlName="description"></textarea>
+      </mat-form-field>
     </tr>
   </table>
 </form>

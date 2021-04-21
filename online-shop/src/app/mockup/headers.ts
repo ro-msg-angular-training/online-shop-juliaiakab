@@ -1,1 +1,1 @@
-export const headers = ['Category', 'Name', 'Price', 'Details'];
+export const headers = ['name', 'category', 'price', 'details'];

@@ -1,12 +1,18 @@
-<h1>Login</h1>
+<h1 class="mat-display-2">Login</h1>
 <form [formGroup]="loginFormData" (ngSubmit)="login()">
-  <div>
-    <label>Username:</label>
-    <input type="text" name="username" formControlName="username" />
-  </div>
-  <div>
-    <label>Password:</label>
-    <input type="password" name="password" formControlName="password" class="password" />
-  </div>
-  <button type="submit">Login</button>
+  <table class="clearfix">
+    <tr>
+      <th>Username:</th>
+      <mat-form-field appearance="fill">
+        <input matInput type="text" name="username" formControlName="username" />
+      </mat-form-field>
+    </tr>
+    <tr>
+      <th>Password:</th>
+      <mat-form-field appearance="fill">
+        <input matInput type="password" name="password" formControlName="password" />
+      </mat-form-field>
+    </tr>
+    <button mat-raised-button type="submit">Login</button>
+  </table>
 </form>

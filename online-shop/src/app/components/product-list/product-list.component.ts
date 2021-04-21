@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { headers } from '../../mockup/headers';
-import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/interfaces/productInterface';
 import { ProductService } from 'src/app/services/product.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -15,7 +14,7 @@ export class ProductListComponent implements OnInit {
   headers = headers;
   admin: boolean = false;
 
-  constructor(private http: HttpClient, private loginService: LoginService, private productService: ProductService) {}
+  constructor(private loginService: LoginService, private productService: ProductService) {}
 
   ngOnInit() {
     this.admin = this.loginService.isAdmin();
