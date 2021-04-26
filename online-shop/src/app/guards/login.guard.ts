@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from '../interfaces/user';
+import { User } from '../interfaces/userInterface';
 import { LoginService } from '../services/login.service';
 
 @Injectable({
@@ -19,7 +19,6 @@ export class LoginGuard implements CanActivate {
       const userRole = this.loginService.getRoles();
       if (route.data.role && userRole.indexOf(route.data.role) === -1) {
         window.alert('Warning! Not authorized!');
-        //this.router.navigate(['login']);
         return false;
       }
       return true;

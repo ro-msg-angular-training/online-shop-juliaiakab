@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/interfaces/cartItemInterface';
 import { Order } from 'src/app/interfaces/orderInterface';

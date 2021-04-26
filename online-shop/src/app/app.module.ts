@@ -21,6 +21,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/reducers/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { ProductEffects } from './store/effects/product.effects';
+import { UserEffects } from './store/effects/user.effects';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -46,6 +53,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([ProductEffects, UserEffects]),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
   ],
   providers: [LoginGuard, LoginService],
   bootstrap: [AppComponent],

@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/productInterface';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { ProductService } from 'src/app/services/product.service';
+import { AddProduct } from 'src/app/store/actions/product.actions';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-add-product',
@@ -21,13 +21,7 @@ export class AddProductComponent {
     description: [''],
   });
 
-  constructor(
-    private http: HttpClient,
-    private errorHandlerService: ErrorHandlerService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private productService: ProductService
-  ) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private store: Store<AppState>) {}
 
   get name(): AbstractControl | null {
     return this.formData.get('name');
@@ -58,15 +52,6 @@ export class AddProductComponent {
     product.description = this.formData.value.description;
     product.image = '';
 
-    this.productService.createProduct(product).subscribe({
-      next: () => {
-        console.log('Product added successfully!');
-        window.alert('The product has been added successfully');
-        this.router.navigate(['products']);
-      },
-      error: (error) => {
-        this.errorMessage = this.errorHandlerService.handleError(error);
-      },
-    });
+    this.store.dispatch(new AddProduct(product));
   }
 }

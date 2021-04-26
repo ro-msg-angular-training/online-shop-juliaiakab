@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { headers } from '../../mockup/headers';
-import { Product } from 'src/app/interfaces/productInterface';
-import { ProductService } from 'src/app/services/product.service';
 import { LoginService } from 'src/app/services/login.service';
+import { AppState } from 'src/app/store/state/app.state';
+import { select, Store } from '@ngrx/store';
+import { selectIsLoading, selectProductList } from 'src/app/store/selectors/product.selectors';
+import { GetAllProducts } from 'src/app/store/actions/product.actions';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -10,16 +13,17 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] = [];
+  products: any;
+  isLoading: boolean = false;
   headers = headers;
   admin: boolean = false;
 
-  constructor(private loginService: LoginService, private productService: ProductService) {}
+  constructor(private loginService: LoginService, private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.products = this.store.pipe(take(1), select(selectProductList));
+    this.store.pipe(select(selectIsLoading)).subscribe((isLoading) => (this.isLoading = isLoading));
     this.admin = this.loginService.isAdmin();
-    this.productService.getAllProducts().subscribe((products) => {
-      this.products = products;
-    });
+    this.store.dispatch(new GetAllProducts());
   }
 }

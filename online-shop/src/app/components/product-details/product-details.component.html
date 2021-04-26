@@ -4,16 +4,19 @@
   <button mat-raised-button (click)="edit()" class="editAndDeleteButton"><mat-icon>edit</mat-icon>Edit</button>
   <button mat-raised-button (click)="delete()" class="editAndDeleteButton"><mat-icon>delete</mat-icon>Delete</button>
 </div>
-<mat-card class="clearfix card" *ngIf="!deleted; else itemDeleted">
-  <img src="{{ product?.image }}" class="productImage" alt="productImage" />
-  <mat-card-content class="detailsContent">
-    <p><label>Name:</label> {{ product?.name }}</p>
-    <p><label>Category:</label> {{ product?.category }}</p>
-    <p><label>Price:</label>{{ product?.price | currency }}</p>
-    <div class="description">{{ product?.description }}</div>
-    <p><label>Description: </label></p>
-  </mat-card-content>
-</mat-card>
+<div *ngIf="isLoading; else productDetails"><mat-spinner mode="indeterminate"></mat-spinner></div>
+<ng-template #productDetails>
+  <mat-card class="clearfix card" *ngIf="!deleted; else itemDeleted">
+    <img src="{{ product?.image }}" class="productImage" alt="productImage" />
+    <mat-card-content class="detailsContent">
+      <p><label>Name:</label> {{ product?.name }}</p>
+      <p><label>Category:</label> {{ product?.category }}</p>
+      <p><label>Price:</label>{{ product?.price | currency }}</p>
+      <div class="description">{{ product?.description }}</div>
+      <p><label>Description: </label></p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
 <ng-template #itemDeleted>
   <p class="emptyString">This item got deleted</p>
 </ng-template>

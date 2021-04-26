@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/interfaces/user';
-import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { User } from 'src/app/interfaces/userInterface';
+import { Login } from 'src/app/store/actions/user.actions';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: [''],
   });
 
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder, public router: Router) {}
+  constructor(private store: Store<AppState>, private formBuilder: FormBuilder, public router: Router) {}
   ngOnInit(): void {}
 
   get username() {
@@ -30,14 +32,6 @@ export class LoginComponent implements OnInit {
     var user = {} as User;
     user.username = this.loginFormData.value.username;
     user.password = this.loginFormData.value.password;
-    this.loginService.login(user).subscribe(
-      () => {
-        window.alert('Login successful');
-        this.router.navigate(['/']);
-      },
-      () => {
-        window.alert('Warning! Wrong credentials.');
-      }
-    );
+    this.store.dispatch(new Login(user));
   }
 }

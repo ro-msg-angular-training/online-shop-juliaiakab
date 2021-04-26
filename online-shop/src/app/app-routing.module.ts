@@ -7,7 +7,6 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { LoginGuard } from './guards/login.guard';
-import { MatTableModule } from '@angular/material/table';
 
 const routes: Routes = [
   { path: 'products', component: ProductListComponent, canActivate: [LoginGuard] },

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/productInterface';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { ProductService } from 'src/app/services/product.service';
+import { EditProduct } from 'src/app/store/actions/product.actions';
+import { selectProduct } from 'src/app/store/selectors/product.selectors';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-edit-product',
@@ -13,6 +16,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class EditProductComponent implements OnInit {
   id = -1;
   product = {} as Product;
+  image = '';
   errorMessage: string = '';
 
   formData: FormGroup = this.formBuilder.group({
@@ -27,14 +31,15 @@ export class EditProductComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private productService: ProductService
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-    this.productService.getProduct(this.id).subscribe(
+    this.store.select(selectProduct).subscribe(
       (product: Product) => {
         this.product = product;
+        this.image = product.image;
         this.formData.patchValue({
           name: this.product.name,
           category: this.product.category,
@@ -49,21 +54,14 @@ export class EditProductComponent implements OnInit {
   }
 
   submit(): void {
-    this.product.name = this.formData.value.name;
-    this.product.category = this.formData.value.category;
-    this.product.price = this.formData.value.price;
-    this.product.description = this.formData.value.description;
-
-    this.productService.editProduct(this.id, this.product).subscribe({
-      next: () => {
-        console.log('Product updated successfully!');
-        window.alert('The product has been updated successfully');
-        this.router.navigate(['products/' + this.id]);
-      },
-      error: (error) => {
-        this.errorMessage = this.errorHandlerService.handleError(error);
-      },
-    });
+    const edited = {} as Product;
+    edited.id = this.id;
+    edited.name = this.formData.value.name;
+    edited.category = this.formData.value.category;
+    edited.price = this.formData.value.price;
+    edited.image = this.image;
+    edited.description = this.formData.value.description;
+    this.store.dispatch(new EditProduct(this.id, edited));
   }
 
   cancel(): void {
