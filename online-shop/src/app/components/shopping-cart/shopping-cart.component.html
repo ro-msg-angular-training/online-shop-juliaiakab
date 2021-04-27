@@ -1,18 +1,26 @@
-<div>
-  <h1>Shopping Cart</h1>
-  <button (click)="checkout()">Checkout</button>
-</div>
+<button mat-raised-button [disabled]="!items.length" (click)="checkout()">Checkout</button>
+<h1 class="mat-display-2">Shopping Cart</h1>
 <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
-<table *ngIf="items.length; else empty" class="clearfix">
-  <thead>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Quantity</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of items" app-cart-item [item]="item"></tr>
-  </tbody>
-</table>
+<mat-table *ngIf="items.length; else empty" class="mat-elevation-z8 clearfix" [dataSource]="items">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      {{ item.name }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef>Price </mat-header-cell>
+    <mat-cell class="product-data" *matCellDef="let item">{{ item.price | currency }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef>Quantity </mat-header-cell>
+    <mat-cell class="product-data" *matCellDef="let item">{{ item.quantity }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnNames"></mat-row>
+</mat-table>
 <div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
 <ng-template #empty>
   <p class="message">Your cart is empty right now.</p>

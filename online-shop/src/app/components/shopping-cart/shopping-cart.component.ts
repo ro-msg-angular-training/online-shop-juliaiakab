@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/interfaces/cartItemInterface';
 import { Order } from 'src/app/interfaces/orderInterface';
@@ -14,16 +13,19 @@ export class ShoppingCartComponent implements OnInit {
   items: CartItem[] = [];
   successMessage: string = '';
   errorMessage: string = '';
+  header: string[] = ['name', 'price', 'quantity'];
 
-  constructor(
-    private shoppingCartService: ShoppingCartService,
-    private errorHandlerService: ErrorHandlerService,
-    private http: HttpClient
-  ) {}
+  itemz: CartItem[] = [
+    { id: 34, category: 'a Cat', description: '222', name: ' ee', price: 34, quantity: 2 },
+    { id: 34, category: 'a Cat', description: '222', name: ' aa', price: 34, quantity: 2 },
+  ];
+
+  constructor(private shoppingCartService: ShoppingCartService, private errorHandlerService: ErrorHandlerService) {}
+
   ngOnInit(): void {
     this.items = this.shoppingCartService.getItems();
   }
-
+  columnNames = ['name', 'price', 'quantity'];
   checkout(): void {
     const order: Order = {
       customer: 'doej',
@@ -33,7 +35,7 @@ export class ShoppingCartComponent implements OnInit {
       })),
     };
 
-    this.http.post('http://localhost:3000/orders', order, { responseType: 'text' }).subscribe({
+    this.shoppingCartService.createOrder(order).subscribe({
       next: () => {
         this.successMessage = 'Your order has been placed successfully!';
         this.shoppingCartService.dropCart();

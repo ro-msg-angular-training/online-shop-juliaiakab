@@ -1,12 +1,27 @@
-<div>
-  <h1>Products</h1>
-  <button routerLink="/products/new" routerLinkActive="active">Add</button>
-</div>
-<table>
-  <thead>
-    <th *ngFor="let header of headers">{{ header }}</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of products" app-product-item [product]="product"></tr>
-  </tbody>
-</table>
+<button mat-raised-button routerLink="/products/new" routerLinkActive="active" [disabled]="!admin">Add</button>
+<h1 class="mat-display-2">Products</h1>
+<div *ngIf="isLoading; else productList"><mat-spinner mode="indeterminate"></mat-spinner></div>
+<ng-template #productList>
+  <mat-table class="mat-elevation-z8 clearfix" [dataSource]="products">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.category }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.price | currency }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef>Details</mat-header-cell>
+      <mat-cell *matCellDef="let product" class="detailsCell"
+        ><button mat-button [routerLink]="['/products', product.id]" routerLinkActive=" active">...</button></mat-cell
+      >
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="headers"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: headers"></mat-row>
+  </mat-table>
+</ng-template>

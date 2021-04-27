@@ -1,11 +1,7 @@
 h1 {
   float: left;
   width: 50%;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgb(52, 59, 48);
-  margin-left: -35%;
-  margin-top: 3%;
-  margin-right: 30%;
 }
 
 button {
@@ -17,31 +13,31 @@ button {
   margin-top: 2%;
 }
 
-table {
-  display: table;
-  margin-left: 5%;
-  display: block;
-  font-size: large;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding: auto;
-  width: 60%;
-  float: left;
+p {
+  padding-bottom: 2%;
 }
 
-th {
+label {
   font-weight: bold;
-  text-align: left;
-  padding: 1em;
-}
-
-td {
-  text-align: left;
-  padding-left: 5%;
-  width: 100%;
+  display: inline-block;
+  width: 150px;
 }
 
 .clearfix {
   clear: both;
+}
+
+.mat-display-2 {
+  margin-left: -5%;
+  margin-top: 3%;
+  margin-right: 25%;
+}
+
+.card {
+  margin-top: 5%;
+  margin-right: 10%;
+  margin-left: 10%;
+  height: 350px;
 }
 
 .editAndDeleteButton {
@@ -56,8 +52,21 @@ td {
 }
 
 .productImage {
-  float: left;
   float: right;
   margin-right: 8%;
   width: 320px;
+}
+
+.detailsContent {
+  text-align: left;
+  font-size: large;
+  padding-top: 5%;
+  padding-right: 10%;
+  padding-left: 5%;
+}
+
+.description {
+  float: right;
+  width: 42%;
+  margin-left: 0%;
 }

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class ErrorHandlerService {
   constructor() {}
 
-  handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse): string {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {

@@ -1,26 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/productInterface';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { AddProduct } from 'src/app/store/actions/product.actions';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    private errorHandlerService: ErrorHandlerService,
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {}
-
+export class AddProductComponent {
   errorMessage: string = '';
+
   formData: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     category: ['', [Validators.required, Validators.minLength(3)]],
@@ -28,44 +21,37 @@ export class AddProductComponent implements OnInit {
     description: [''],
   });
 
-  get name() {
+  constructor(private formBuilder: FormBuilder, private router: Router, private store: Store<AppState>) {}
+
+  get name(): AbstractControl | null {
     return this.formData.get('name');
   }
 
-  get category() {
+  get category(): AbstractControl | null {
     return this.formData.get('category');
   }
 
-  get price() {
+  get price(): AbstractControl | null {
     return this.formData.get('price');
   }
 
-  get description() {
+  get description(): AbstractControl | null {
     return this.formData.get('description');
   }
 
-  cancel() {
+  cancel(): void {
     this.formData.reset();
     this.router.navigate(['/products']);
   }
 
-  submit() {
-    var product = <Product>{};
+  submit(): void {
+    var product = {} as Product;
     product.name = this.formData.value.name;
     product.category = this.formData.value.category;
     product.price = this.formData.value.price;
     product.description = this.formData.value.description;
     product.image = '';
 
-    this.http.post('http://localhost:3000/products', product, { responseType: 'text' }).subscribe({
-      next: () => {
-        console.log('Product added successfully!');
-        window.alert('The product has been added successfully');
-        this.router.navigate(['products']);
-      },
-      error: (error) => {
-        this.errorMessage = this.errorHandlerService.handleError(error);
-      },
-    });
+    this.store.dispatch(new AddProduct(product));
   }
 }

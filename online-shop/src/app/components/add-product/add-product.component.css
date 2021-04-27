@@ -1,11 +1,7 @@
 h1 {
   float: left;
   width: 50%;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgb(52, 59, 48);
-  margin-left: -35%;
-  margin-top: 3%;
-  margin-right: 30%;
 }
 
 button {
@@ -13,14 +9,12 @@ button {
   border-radius: 5%;
   color: rgb(52, 59, 48);
   float: left;
-  padding: 1%;
+  padding: 1% 2%;
   margin-top: 2%;
   margin-left: 20px;
-  width: 7%;
 }
 
 table {
-  display: table;
   margin-left: 5%;
   display: block;
   font-size: large;
@@ -28,32 +22,25 @@ table {
   padding: auto;
 }
 
+tr {
+  width: 100%;
+}
+
 th {
   font-weight: bold;
   text-align: left;
   padding: 1em;
+  width: 20%;
 }
 
-input {
-  margin-top: 20px;
-  text-align: left;
-  padding-left: 2%;
+.mat-form-field {
   width: 100%;
-  height: 40px;
-  margin-left: 5%;
-}
-
-textarea {
-  margin-top: 20px;
-  text-align: left;
-  padding-left: 2%;
-  width: 100%;
-  padding-top: 10px;
-  margin-left: 5%;
+  margin-left: 2%;
 }
 
 .clearfix {
   clear: both;
+  margin: 0 10%;
 }
 
 .emptyString {
@@ -63,9 +50,17 @@ textarea {
   clear: both;
 }
 
-.errorMessage {
-  color: brown;
-  font-size: 0.7em;
+.mat-error {
+  font-size: 1em;
   text-align: left;
-  margin-left: 5%;
+}
+
+.mat-icon {
+  margin-right: 10%;
+}
+
+.mat-display-2 {
+  margin-left: -5%;
+  margin-top: 3%;
+  margin-right: 25%;
 }
